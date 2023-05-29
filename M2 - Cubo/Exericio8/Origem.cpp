@@ -39,12 +39,13 @@ const GLuint WIDTH = 1000, HEIGHT = 1000;
 const GLchar* vertexShaderSource = "#version 450\n"
 "layout (location = 0) in vec3 position;\n"
 "layout (location = 1) in vec3 color;\n"
+"layout (location = 2) in float offset;\n"
 "uniform mat4 model;\n"
 "out vec4 finalColor;\n"
 "void main()\n"
 "{\n"
 //...pode ter mais linhas de código aqui!
-"gl_Position = model * vec4(position, 1.0);\n"
+"gl_Position = model * vec4(position.x + offset, position.y + offset, position.z + offset, 1.0);\n"
 "finalColor = vec4(color, 1.0);\n"
 "}\0";
 
@@ -57,7 +58,8 @@ const GLchar* fragmentShaderSource = "#version 450\n"
 "color = finalColor;\n"
 "}\n\0";
 
-bool rotateX=false, rotateY=false, rotateZ=false;
+bool rotateX=false, rotateY=false, rotateZ=false, scaleUp=false;
+float scale = 1.0f, xTranslation=0.0f, yTranslation = 0.0f, zTranslation = 0.0f;
 
 // Função MAIN
 int main()
@@ -98,10 +100,7 @@ int main()
 	cout << "Renderer: " << renderer << endl;
 	cout << "OpenGL version supported " << version << endl;
 
-	// Definindo as dimensões da viewport com as mesmas dimensões da janela da aplicação
-	int width, height;
-	glfwGetFramebufferSize(window, &width, &height);
-	glViewport(0, 0, width, height);
+	
 
 
 	// Compilando e buildando o programa de shader
@@ -125,6 +124,11 @@ int main()
 	// Loop da aplicação - "game loop"
 	while (!glfwWindowShouldClose(window))
 	{
+		// Definindo as dimensões da viewport com as mesmas dimensões da janela da aplicação
+		int width, height;
+		glfwGetFramebufferSize(window, &width, &height);
+		glViewport(0, 0, width, height);
+
 		// Checa se houveram eventos de input (key pressed, mouse moved etc.) e chama as funções de callback correspondentes
 		glfwPollEvents();
 
@@ -154,17 +158,23 @@ int main()
 
 		}
 
+		model = glm::scale(model, glm::vec3(scale, scale, scale));
+
+		model = glm::translate(model, glm::vec3(xTranslation, yTranslation, zTranslation));
+
+
+
 		glUniformMatrix4fv(modelLoc, 1, FALSE, glm::value_ptr(model));
 		// Chamada de desenho - drawcall
 		// Poligono Preenchido - GL_TRIANGLES
 		
 		glBindVertexArray(VAO);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		glDrawArraysInstanced(GL_TRIANGLES, 0, 36, 2);
 
 		// Chamada de desenho - drawcall
 		// CONTORNO - GL_LINE_LOOP
 		
-		glDrawArrays(GL_POINTS, 0, 36);
+		glDrawArraysInstanced(GL_POINTS, 0, 36, 2);
 		glBindVertexArray(0);
 
 		// Troca os buffers da tela
@@ -206,6 +216,37 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		rotateZ = !rotateZ;
 	}
 
+	if (key == GLFW_KEY_LEFT_BRACKET && action == GLFW_PRESS)	{
+		scale -= 0.2f;
+	}
+
+	if (key == GLFW_KEY_RIGHT_BRACKET && action == GLFW_PRESS) {
+		scale += 0.2f;
+	}
+
+	if (key == GLFW_KEY_A && action == GLFW_PRESS) {
+		xTranslation -= 0.1f;
+	}
+
+	if (key == GLFW_KEY_D && action == GLFW_PRESS) {
+		xTranslation += 0.1f;
+	}
+
+	if (key == GLFW_KEY_S && action == GLFW_PRESS) {
+		zTranslation -= 0.1f;
+	}
+
+	if (key == GLFW_KEY_W && action == GLFW_PRESS) {
+		zTranslation += 0.1f;
+	}
+
+	if (key == GLFW_KEY_J && action == GLFW_PRESS) {
+		yTranslation -= 0.1f;
+	}
+
+	if (key == GLFW_KEY_I && action == GLFW_PRESS) {
+		yTranslation += 0.1f;
+	}
 }
 
 //Esta função está basntante hardcoded - objetivo é compilar e "buildar" um programa de
@@ -217,6 +258,7 @@ int setupShader()
 {
 	// Vertex shader
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 	glCompileShader(vertexShader);
 	// Checando erros de compilação (exibição via log no terminal)
@@ -371,6 +413,15 @@ int setupGeometry()
 
 	// Desvincula o VAO (é uma boa prática desvincular qualquer buffer ou array para evitar bugs medonhos)
 	glBindVertexArray(0);
+
+	GLfloat offsets[] = { 0.0f, 0.3f };
+	GLuint offsetsBufferId;
+	glGenBuffers(1, &offsetsBufferId);
+	glBindBuffer(GL_ARRAY_BUFFER, offsetsBufferId);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(offsets), offsets, GL_STATIC_DRAW);
+	glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribDivisor(2, 1);
+	glEnableVertexAttribArray(2);
 
 	return VAO;
 }
