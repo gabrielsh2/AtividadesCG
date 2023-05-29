@@ -3,8 +3,19 @@
 ## M1
 
 Adicionado os Projetos:
+
 - Hello3D
-- Hello3D - withShaderClass 
+- Hello3D - withShaderClass
 - HelloTextures
 
 Seguindo como base o exemplo passado na tarefa e fazendo as alterações solicitadas.
+
+## M2
+
+Adicionado o projeto M2 - Cubo.
+
+Esse projeto foi criado com base na pirâmide e primeiramente foi alterado o vetor de vértices e a função de desenhar triângulos para representar um cubo.
+
+Após isso foram criadas funcionalidades de escala usando o glm::scale e de translação utilizando o glm:translate. Permitindo alterar aumentar e diminuir a escala do cubo e move-lo a partir do teclado.
+
+Por último foi criada mais uma instância de cubo alterando o vertexShader, atualizado a função de desenho para uma função com instâncias e alterado o método setupGeometry para utilizar um segundo VBO que controle as instâncias.
