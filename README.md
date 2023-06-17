@@ -47,3 +47,11 @@ Adicionando o projeto M4 - Iluminação
 Nesse projeto foi adicionado iluminação da Suzanne.
 
 Esse código foi desenvolvido a partir do projeto do M3 e com o auxílio do projeto Hello3D Phong que a professora disponibilizou no repositório. A partir disso foi criado um vetor para armazenar os vertices normais do OBJ da Suzanne, foi lido do MTL as constantes necessárias para o modelo de iluminação Phong. No fragment shader foi usado as fórmulas passadas em aula para criar o efeito de iluminação.
+
+## M5
+
+Adicionado o projeto M5 - Camera
+
+Nesse projeto foi adicionado uma câmera em primeira pessoa que pode ser rotacionada pelo mouse e movida via WASD no teclado.
+
+Esse código foi evoluido do código de iluminação do M4, primeiramente configurando a câmera conforme visto em aula, criando uma classe Camera capaz de configurar os parâmetros e com funções auxiliares de movimentação e rotação. Além disso foi utilizada a classe Mesh disponibilizada no exemplo Hello3D Phong para deixar mais limpo e simples o código de como a Suzanne é renderizada em tela.
