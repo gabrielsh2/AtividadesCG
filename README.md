@@ -39,3 +39,11 @@ Nesse projeto foi adicionado texturas na Suzanne.
 Não evoluí a partir do projeto da vivencial pois ao ver o projeto de exemplo HelloTextures acreditei que serviria melhor para o propósito da atividade. Além de já ter uma base com o carregamento de texturas o vertex shader e fragment shader estão separados em outros arquivos facilitando a legibilidade do código.
 
 Além disso refatorei o método loadOBJ para adapta-lo para a atividade e remover o uso de deprecateds como o fscanf. Foi criado também uma função para ler o .mtl.
+
+## M4
+
+Adicionando o projeto M4 - Iluminação
+
+Nesse projeto foi adicionado iluminação da Suzanne.
+
+Esse código foi desenvolvido a partir do projeto do M3 e com o auxílio do projeto Hello3D Phong que a professora disponibilizou no repositório. A partir disso foi criado um vetor para armazenar os vertices normais do OBJ da Suzanne, foi lido do MTL as constantes necessárias para o modelo de iluminação Phong. No fragment shader foi usado as fórmulas passadas em aula para criar o efeito de iluminação.
