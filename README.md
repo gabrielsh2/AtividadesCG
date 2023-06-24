@@ -55,3 +55,13 @@ Adicionado o projeto M5 - Camera
 Nesse projeto foi adicionado uma câmera em primeira pessoa que pode ser rotacionada pelo mouse e movida via WASD no teclado.
 
 Esse código foi evoluido do código de iluminação do M4, primeiramente configurando a câmera conforme visto em aula, criando uma classe Camera capaz de configurar os parâmetros e com funções auxiliares de movimentação e rotação. Além disso foi utilizada a classe Mesh disponibilizada no exemplo Hello3D Phong para deixar mais limpo e simples o código de como a Suzanne é renderizada em tela.
+
+## M6
+
+Adicionado o projeto M6 - Trajetórias
+
+Nesse projeto foi adicionado uma trajetória na Suzanne a partir de uma interpolação bezier.
+
+O código foi evoluido a partir do projeto de câmera do M5, adicionei as classes de curva disponibilizadas no projeto exemplo, estou entregando utilizando a classe Bezier no código, porém as outras classes estão disponíveis no código para alternar entre elas.
+
+Os pontos de controle da trajetória são configurados a partir do arquivo config.txt na pasta animation, lá eles podem ser alterados e refletir no objeto. A trajetória da Suzanne é alterada a partir desse conjunto de pontos, que são lidos e iterados atualizando a posição do objeto dentro do loop principal.
