@@ -65,3 +65,11 @@ Nesse projeto foi adicionado uma trajetória na Suzanne a partir de uma interpol
 O código foi evoluido a partir do projeto de câmera do M5, adicionei as classes de curva disponibilizadas no projeto exemplo, estou entregando utilizando a classe Bezier no código, porém as outras classes estão disponíveis no código para alternar entre elas.
 
 Os pontos de controle da trajetória são configurados a partir do arquivo config.txt na pasta animation, lá eles podem ser alterados e refletir no objeto. A trajetória da Suzanne é alterada a partir desse conjunto de pontos, que são lidos e iterados atualizando a posição do objeto dentro do loop principal.
+
+## Grau B
+
+Adicionado o projeto Projeto Final - GB
+
+Nesse projeto foi combinado os aprendizados de outras aulas e assim feito um Visualizador de Cenas 3D.
+
+Mais informações sobre o projeto no README de seu diretório.
