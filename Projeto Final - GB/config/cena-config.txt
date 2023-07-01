@@ -8,7 +8,7 @@ fileName CuboTextured.obj
 position -1.0 0.0 0.0
 scale 0.2
 angle 0.0
-axis Z
+axis X
 startCurve
 curvePoint -0.7 -0.4 0.0
 curvePoint -0.5 -0.4 1.0
@@ -26,7 +26,7 @@ fileName mesa01.obj
 position 0.0 -0.5 0.0
 scale 0.1
 angle 0.0
-axis X
+axis Y
 noCurve
 
 fileName SuzanneTriTextured.obj
@@ -35,3 +35,18 @@ scale 0.5
 angle 0.0
 axis Z
 noCurve
+
+fileName planeta.obj
+position -1.0 2.0 1.0
+scale 0.4
+angle 0.0
+axis Y
+startCurve
+curvePoint -1.0 2.0 1.0
+curvePoint -0.8 2.2 0.8
+curvePoint -0.6 2.4 0.6
+curvePoint -0.6 2.0 0.6
+curvePoint -0.4 1.8 0.4
+curvePoint -0.2 1.6 0.0
+curvePoint -0.4 1.8 0.0
+endCurve
